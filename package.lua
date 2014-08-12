@@ -16,6 +16,7 @@ return {
   dependencies = {
   },
   devDependencies = {
+    ["tape"] = "https://github.com/virgo-agent-toolkit/luvit-tape",
   },
   main = 'init.lua',
 }
