@@ -56,6 +56,7 @@ local function proxy(uri, host, callback)
       callback(Error:new('Proxy Error'))
     end
   end)
+  req:once('error', callback)
   req:done()
 end
 
