@@ -1,2 +1,1 @@
-local request = require('./lib/request')
-return request
+return require('./lib/request')
