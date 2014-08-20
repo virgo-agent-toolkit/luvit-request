@@ -1,6 +1,6 @@
 {
   "name": "luvit-request",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Request Library",
   "main": "init.lua",
   "scripts": {

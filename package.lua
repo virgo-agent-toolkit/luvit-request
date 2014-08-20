@@ -1,6 +1,6 @@
 return {
   name = "request",
-  version = "0.0.2",
+  version = "0.0.3",
   description = "request http/https module",
   repository = {
     url = "https://github.com/virgo-agent-toolkit/luvit-request.git",
