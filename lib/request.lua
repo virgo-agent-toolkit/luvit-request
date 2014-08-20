@@ -76,7 +76,10 @@ local function request(options, callback)
   end
 
   local function perform(proto, opts, callback)
-    local client = proto.request(opts, callback)
+    local client = proto.request(opts, function(res)
+      callback(nil, res)
+    end)
+    client:once('error', callback)
     client:done(opts.body)
   end
 
