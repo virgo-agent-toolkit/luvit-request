@@ -1,5 +1,5 @@
 --[[
-Copyright 2014 Rackspace
+Copyright 2015 Rackspace
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -96,7 +96,5 @@ local function request(options, callback)
   end
 end
 
-local exports = {}
 exports.proxy = proxy
 exports.request = request
-return exports

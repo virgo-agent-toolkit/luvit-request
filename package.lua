@@ -1,22 +1,13 @@
 return {
-  name = "request",
-  version = "0.0.3",
-  description = "request http/https module",
-  repository = {
-    url = "https://github.com/virgo-agent-toolkit/luvit-request.git",
-  },
-  author = {
-    name = "Ryan Phillips",
-    email = "ryan.phillips@rackspace.com",
-    url = "https://rackspace.com/",
-  },
-  contributors = {
-  },
-  licenses = {"Apache-2.0"},
+  name = "virgo-agent-toolkit/luvit-request",
+  version = "0.2.0",
+  description = "Rackspace Monitoring Client",
+  author = "Ryan Phillips <ryan.phillips@rackspace.com>",
   dependencies = {
+    "luvit/luvit@2.0.0",
+    "rphillips/async@0.0.2",
   },
-  devDependencies = {
-    ["tape"] = "https://github.com/virgo-agent-toolkit/luvit-tape",
-  },
-  main = 'init.lua',
+  files = {
+    "**.lua"
+  }
 }
