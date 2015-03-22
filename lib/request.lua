@@ -79,8 +79,8 @@ local function request(options, callback)
     local client = proto.request(opts, function(res)
       callback(nil, res)
     end)
-    client:write(opts.body)
     client:once('error', callback)
+    if opts.body then client:write(opts.body) end
     client:done()
   end
 
