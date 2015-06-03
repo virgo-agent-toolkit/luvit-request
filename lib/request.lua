@@ -44,14 +44,14 @@ local function proxy(uri, host, callback)
   options.method = 'CONNECT'
   options.path = host
   options.headers = {
-    ['connection'] = 'keep-alive',
+    { 'connection', 'keep-alive' }
   }
 
-  local req
-  req = proto.request(options, function(response)
-    if response.status_code == 200 then
-      req.socket:removeAllListeners()
-      callback(nil, req.socket)
+  local req = proto.request(options)
+  req:on('connect', function(response, socket, headers)
+    if response.statusCode == 200 then
+      socket:emit('alreadyConnected', socket)
+      callback(nil, socket)
     else
       callback(Error:new('Proxy Error'))
     end
