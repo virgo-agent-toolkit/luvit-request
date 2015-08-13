@@ -33,7 +33,7 @@ local function merge(...)
   return first
 end
 
-local function proxy(uri, host, callback)
+local function proxy(uri, host, timeout, callback)
   local options = url.parse(uri)
   local proto = http
 
@@ -55,6 +55,9 @@ local function proxy(uri, host, callback)
     else
       callback(Error:new('Proxy Error'))
     end
+  end)
+  req:setTimeout(timeout or 0, function()
+    callback(Error:new('proxy timeout'))
   end)
   req:once('error', callback)
   req:done()
@@ -85,10 +88,8 @@ local function request(options, callback)
   end
 
   if opts.proxy then
-    proxy(opts.proxy, parsed.host .. ':' .. port, function(err, socket)
-      if err then
-        return callback(err)
-      end
+    proxy(opts.proxy, parsed.host .. ':' .. port, opts.timeout, function(err, socket)
+      if err then return callback(err) end
       opts.socket = socket
       perform(proto, opts, callback)
     end)
