@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 --]]
+local base64 = require('openssl').base64
 local http = require('http')
 local https = require('https')
 local url = require('url')
@@ -46,6 +47,11 @@ local function proxy(uri, host, timeout, callback)
   options.headers = {
     { 'connection', 'keep-alive' }
   }
+
+  if options.auth then
+    local base64_auth = base64(options.auth)
+    table.insert(options.headers, { 'Proxy-Authorization', 'Basic ' .. base64_auth } )
+  end
 
   local req = proto.request(options)
   req:on('connect', function(response, socket, headers)
